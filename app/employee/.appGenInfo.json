@@ -1,0 +1,28 @@
+{
+  "generationParameters": {
+    "generationDate": "Tue Jan 27 2026 16:38:35 GMT+0100 (Central European Standard Time)",
+    "generatorPlatform": "Visual Studio Code",
+    "serviceType": "Local CAP",
+    "metadataFilename": "",
+    "serviceUrl": "http://localhost:4004/odata/v4/ui-agency-hd-/",
+    "appName": "employee",
+    "appTitle": "Employees",
+    "appDescription": "",
+    "appNamespace": "sflight.hierarchy",
+    "ui5Theme": "sap_horizon",
+    "ui5Version": "1.142.4",
+    "enableEslint": false,
+    "enableTypeScript": false,
+    "showMockDataInfo": false,
+    "generatorVersion": "1.20.1",
+    "template": "List Report Page V4",
+    "generatorName": "SAP Fiori Application Generator",
+    "entityRelatedConfig": [
+      {
+        "type": "Main Entity",
+        "value": "Employee"
+      }
+    ],
+    "launchText": "To launch the generated app, start your CAP project:  and navigate to the following location in your browser:\n\nhttp://localhost:4004/sflight.hierarchy.employee/index.html"
+  }
+}

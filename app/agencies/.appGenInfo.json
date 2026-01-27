@@ -1,0 +1,32 @@
+{
+  "generationParameters": {
+    "generationDate": "Tue Jan 27 2026 15:48:42 GMT+0100 (Central European Standard Time)",
+    "generatorPlatform": "Visual Studio Code",
+    "serviceType": "Local CAP",
+    "metadataFilename": "",
+    "serviceUrl": "http://localhost:4004/odata/v4/ui-agency-hd-/",
+    "appName": "agencies",
+    "appTitle": "Agencies",
+    "appDescription": "",
+    "appNamespace": "sflight.hierarchy",
+    "ui5Theme": "sap_horizon",
+    "ui5Version": "1.144.0",
+    "enableEslint": false,
+    "enableTypeScript": false,
+    "showMockDataInfo": false,
+    "generatorVersion": "1.20.1",
+    "template": "List Report Page V4",
+    "generatorName": "SAP Fiori Application Generator",
+    "entityRelatedConfig": [
+      {
+        "type": "Main Entity",
+        "value": "Agency"
+      },
+      {
+        "type": "Navigation Entity",
+        "value": "_Employees"
+      }
+    ],
+    "launchText": "To launch the generated app, start your CAP project:  and navigate to the following location in your browser:\n\nhttp://localhost:4004/agencies/webapp/index.html"
+  }
+}

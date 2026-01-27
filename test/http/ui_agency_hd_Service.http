@@ -1,0 +1,21 @@
+@server=http://localhost:4004
+@username=alice
+@password=
+
+### Service Root
+GET {{server}}/odata/v4/ui-agency-hd-/
+Authorization: Basic {{username}}:{{password}}
+### Metadata
+GET {{server}}/odata/v4/ui-agency-hd-/$metadata
+Authorization: Basic {{username}}:{{password}}
+### Agency
+# @name Agency_GET
+GET {{server}}/odata/v4/ui-agency-hd-/Agency
+  ?$expand=_Employees($expand=manager)
+#  &$filter=ID eq '16712544-1a8f-43ca-a938-905bbe5028c8'
+Authorization: Basic {{username}}:{{password}}
+### Employee
+# @name Employee_GET
+GET {{server}}/odata/v4/ui-agency-hd-/Employee
+  ?$expand=*
+Authorization: Basic {{username}}:{{password}}
