@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+  <edmx:Reference
+    Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Aggregation.V1.xml">
+    <edmx:Include Alias="Aggregation" Namespace="Org.OData.Aggregation.V1" />
+  </edmx:Reference>
+  <edmx:Reference
+    Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Capabilities.V1.xml">
+    <edmx:Include Alias="Capabilities" Namespace="Org.OData.Capabilities.V1" />
+  </edmx:Reference>
   <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
     <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1" />
   </edmx:Reference>
   <edmx:Reference
     Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
     <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1" />
+  </edmx:Reference>
+  <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Hierarchy.xml">
+    <edmx:Include Alias="Hierarchy" Namespace="com.sap.vocabularies.Hierarchy.v1" />
   </edmx:Reference>
   <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
     <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1" />
@@ -84,6 +95,10 @@
           <ReferentialConstraint Property="_Agency_ID" ReferencedProperty="ID" />
         </NavigationProperty>
         <Property Name="_Agency_ID" Type="Edm.Guid" />
+        <Property Name="LimitedDescendantCount" Type="Edm.Int16" />
+        <Property Name="DistanceFromRoot" Type="Edm.Int16" />
+        <Property Name="DrillState" Type="Edm.String" />
+        <Property Name="LimitedRank" Type="Edm.Int16" />
         <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="true" />
         <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false" />
         <Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false" />
@@ -285,6 +300,20 @@
         <Annotation Term="Core.Computed" Bool="true" />
       </Annotations>
       <Annotations Target="ui_agency_hd_Service.Employee">
+        <Annotation Term="Aggregation.RecursiveHierarchy" Qualifier="EmployeeHierarchy">
+          <Record Type="Aggregation.RecursiveHierarchyType">
+            <PropertyValue Property="NodeProperty" PropertyPath="ID" />
+            <PropertyValue Property="ParentNavigationProperty" NavigationPropertyPath="manager" />
+          </Record>
+        </Annotation>
+        <Annotation Term="Hierarchy.RecursiveHierarchy" Qualifier="EmployeeHierarchy">
+          <Record Type="Hierarchy.RecursiveHierarchyType">
+            <PropertyValue Property="LimitedDescendantCount" Path="LimitedDescendantCount" />
+            <PropertyValue Property="DistanceFromRoot" Path="DistanceFromRoot" />
+            <PropertyValue Property="DrillState" Path="DrillState" />
+            <PropertyValue Property="LimitedRank" Path="LimitedRank" />
+          </Record>
+        </Annotation>
         <Annotation Term="UI.SelectionFields">
           <Collection>
             <PropertyPath>first_name</PropertyPath>
@@ -324,6 +353,30 @@
         <Annotation Term="Common.Messages" Path="DraftMessages" />
       </Annotations>
       <Annotations Target="ui_agency_hd_Service.EntityContainer/Employee">
+        <Annotation Term="Capabilities.FilterRestrictions">
+          <Record Type="Capabilities.FilterRestrictionsType">
+            <PropertyValue Property="NonFilterableProperties">
+              <Collection>
+                <PropertyPath>LimitedDescendantCount</PropertyPath>
+                <PropertyPath>DistanceFromRoot</PropertyPath>
+                <PropertyPath>DrillState</PropertyPath>
+                <PropertyPath>LimitedRank</PropertyPath>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.SortRestrictions">
+          <Record Type="Capabilities.SortRestrictionsType">
+            <PropertyValue Property="NonSortableProperties">
+              <Collection>
+                <PropertyPath>LimitedDescendantCount</PropertyPath>
+                <PropertyPath>DistanceFromRoot</PropertyPath>
+                <PropertyPath>DrillState</PropertyPath>
+                <PropertyPath>LimitedRank</PropertyPath>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
         <Annotation Term="Common.DraftRoot">
           <Record Type="Common.DraftRootType">
             <PropertyValue Property="ActivationAction" String="ui_agency_hd_Service.draftActivate" />
@@ -376,6 +429,18 @@
         <Annotation Term="Core.Computed" Bool="true" />
         <Annotation Term="Core.Description" String="User's unique ID" />
         <Annotation Term="Common.Label" String="Changed By" />
+      </Annotations>
+      <Annotations Target="ui_agency_hd_Service.Employee/LimitedDescendantCount">
+        <Annotation Term="Core.Computed" Bool="true" />
+      </Annotations>
+      <Annotations Target="ui_agency_hd_Service.Employee/DistanceFromRoot">
+        <Annotation Term="Core.Computed" Bool="true" />
+      </Annotations>
+      <Annotations Target="ui_agency_hd_Service.Employee/DrillState">
+        <Annotation Term="Core.Computed" Bool="true" />
+      </Annotations>
+      <Annotations Target="ui_agency_hd_Service.Employee/LimitedRank">
+        <Annotation Term="Core.Computed" Bool="true" />
       </Annotations>
       <Annotations Target="ui_agency_hd_Service.Employee/IsActiveEntity">
         <Annotation Term="UI.Hidden" Bool="true" />
